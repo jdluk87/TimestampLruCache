@@ -39,8 +39,8 @@ public class CacheUtil {
 	
 	public void addBitmapToMemoryCache(String key, Bitmap bitmap, long timestamp) {
 		if (bitmap != null){
-		    if (getBitmapFromMemCache(key + timestamp, timestamp) == null) {
-		    	mMemoryCacheTimestamp.put(key + timestamp, bitmap, timestamp);
+		    if (getBitmapFromMemCache(key, timestamp) == null) {
+		    	mMemoryCacheTimestamp.put(key, bitmap, timestamp);
 		    }
 		}
 	}
@@ -50,14 +50,14 @@ public class CacheUtil {
 	}
 
 	public Bitmap loadBitmap(String resId, long timestamp) {
-	    final Bitmap bitmap = getBitmapFromMemCache(resId + timestamp, timestamp);
+	    final Bitmap bitmap = getBitmapFromMemCache(resId, timestamp);
 	    
 	    if (bitmap != null) {
-	    	Log.i(Constants.TAG_CACHE, "cache hit " + resId + timestamp);
+	    	Log.i(Constants.TAG_CACHE, "cache hit " + resId);
 	    	return bitmap;
 	    }
 	    else {
-	    	Log.i(Constants.TAG_CACHE, "cache missing " + resId + timestamp);
+	    	Log.i(Constants.TAG_CACHE, "cache missing " + resId);
 	    	return null;
 	    }
 	}
